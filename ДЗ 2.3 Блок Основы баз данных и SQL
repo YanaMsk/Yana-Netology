@@ -1,0 +1,33 @@
+CREATE TABLE Film_Oscar (id serial PRIMARY KEY,
+Films_name VARCHAR (255) NOT NULL, Oscar INTEGER NOT NULL);
+
+INSERT INTO Film_Oscar VALUES
+(1, 'Энни Холл', 1), 
+(2, 'Быть Джоном Малковичем', 1), 
+(3, 'Любовь и смерть', 0);
+
+select * from Film_Oscar;
+
+
+
+CREATE TABLE Film_country (id serial PRIMARY KEY,
+country VARCHAR (255) NOT NULL);
+
+INSERT INTO Film_country VALUES
+(11, 'США'), 
+(12, 'Россия');
+
+select * from Film_country;
+
+
+CREATE TABLE Film_Oscar_Courtry (Film_Oscar_id INTEGER references Film_Oscar (id),
+Film_country_id INTEGER references Film_country (id),
+CONSTRAINT u_constraint UNIQUE (Film_Oscar_id, Film_country_id));
+
+
+INSERT INTO Film_Oscar_Courtry VALUES
+(1, 11),
+(2, 11),
+(3, 12);
+
+select * from Film_Oscar_Courtry;
