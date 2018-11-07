@@ -18,7 +18,6 @@ INSERT INTO Film_director VALUES
 (12, 'Спайк Джонс', 7);
 
 
-
 CREATE TABLE Film2Film_director (Film_id INTEGER references Film (id),
 Film_director_id INTEGER references Film_director (id),
 CONSTRAINT u_constraint UNIQUE (film_id, Film_director_id));
