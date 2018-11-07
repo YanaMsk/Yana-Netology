@@ -1,0 +1,39 @@
+CREATE TABLE Persons (id serial PRIMARY KEY,
+fio VARCHAR (255) NOT NULL);
+
+select * from Persons;
+
+INSERT INTO Persons VALUES (1, 'James Cameron');
+
+INSERT INTO Persons VALUES (2, 'Luc Besson');
+
+INSERT INTO Persons VALUES (3, 'David Fincher'), (4, 'Quentin Tarantino'), (5, 'Keanu Reeves');
+
+CREATE TABLE Filmes (
+id serial PRIMARY KEY, 
+tittle VARCHAR (255) NOT NULL,
+country VARCHAR (255) NOT NULL,
+box_office NUMERIC NOT NULL,
+release_year DATE NOT NULL
+);
+
+INSERT INTO Filmes VALUES (11,'Avatar','USA',2782275172,'2009-01-01');
+
+INSERT INTO Filmes VALUES (12,'Leon','France',19501238,'1994-01-01');
+
+INSERT INTO Filmes VALUES (13,'Fight Club','USA',100853753,'1999-01-01');
+
+INSERT INTO Filmes VALUES (14,'Pulp Fiction','USA',213928762,'1994-01-01');
+
+INSERT INTO Filmes VALUES (15,'The Matrix','USA',463517383,'1999-01-01');
+
+
+CREATE TABLE persons2content (persons_id INTEGER references Persons (id),
+film_id  INTEGER references filmes (id), person_type VARCHAR (255) NOT NULL, 
+CONSTRAINT u_constraint UNIQUE (film_id, persons_id));
+
+INSERT INTO persons2content VALUES (1, 11, 'film director');
+INSERT INTO persons2content VALUES (2, 12, 'film director');
+INSERT INTO persons2content VALUES (3, 13, 'film director');
+INSERT INTO persons2content VALUES (4, 14, 'film director');
+INSERT INTO persons2content VALUES (5, 15, 'actor');
