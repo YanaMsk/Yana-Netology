@@ -1,5 +1,5 @@
 CREATE TABLE Film (id serial PRIMARY KEY,
-Films_name VARCHAR (255) NOT NULL, Oscar BIT NOT NULL);
+Films_name VARCHAR (255) NOT NULL, Oscar INTEGER NOT NULL);
 
 select * from Film;
 
@@ -11,7 +11,9 @@ INSERT INTO Film VALUES
 CREATE TABLE Film_director (id serial PRIMARY KEY,
 Film_director_name VARCHAR (255) NOT NULL, IMBD_rating INTEGER NOT NULL);
 
-INDERT INTO Film_director VALUES
+select * from Film_director;
+
+INSERT INTO Film_director VALUES
 (11, 'Вуди Аллен', 8), 
 (12, 'Спайк Джонс', 7);
 
@@ -21,7 +23,11 @@ CREATE TABLE Film2Film_director (Film_id INTEGER references Film (id),
 Film_director_id INTEGER references Film_director (id),
 CONSTRAINT u_constraint UNIQUE (film_id, Film_director_id));
 
-INDERT INTO Film_director VALUES
-(1, 11),
+select * from Film2Film_director;
+
+INSERT INTO Film2Film_director VALUES
+(1, 11),drop
 (2, 12),
 (3, 11);
+
+select * from Film2Film_director;
