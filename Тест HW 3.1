@@ -1,1 +1,27 @@
 
+
+-- запрос 1.1 выбрать 10 записей из таблицы rating
+SELECT * FROM ratings LIMIT 10;
+
+
+
+
+-- запрос 1.2 выбрать из таблицы links всё записи, у которых imdbid оканчивается на "42", а поле movieid между 100 и 1000
+(
+  SELECT * FROM links
+  WHERE 
+      imdbid LIKE '%42'
+      AND
+      movieid >= 100
+)INTERSECT (
+
+  SELECT * FROM links
+    WHERE 
+        imdbid LIKE '%42'
+        AND
+        movieid <= 1000
+)
+LIMIT 10;
+
+
+
