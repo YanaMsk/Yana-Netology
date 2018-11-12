@@ -41,7 +41,18 @@ LEFT JOIN public.ratings
     ON links.movieid=ratings.movieid
 WHERE ratings.movieid IS NULL;
 
+
+
 -- запрос 3.4 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5
+
+SELECT userid, AVG(rating)
+FROM ratings
+GROUP BY userid 
+HAVING AVG(rating) > 3.5
+ORDER BY AVG(rating) DESC
+LIMIT 50;
+
+
 
 
 -- запрос 4.1 достать 10 imbdId из links у которых средний рейтинг больше 3.5
