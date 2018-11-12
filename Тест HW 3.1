@@ -32,3 +32,14 @@ JOIN ratings
     ON links.movieid=ratings.movieid
 WHERE rating =5
 LIMIT 10;
+
+
+-- Посчитать число фильмов без оценок
+SELECT COUNT(*)
+FROM public.links
+LEFT JOIN public.ratings
+    ON links.movieid=ratings.movieid
+WHERE ratings.movieid IS NULL;
+
+-- запрос 4.1 достать 10 imbdId из links у которых средний рейтинг больше 3.5
+
