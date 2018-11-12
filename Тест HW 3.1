@@ -25,3 +25,10 @@ LIMIT 10;
 
 
 -- запрос 2.1 выбрать из таблицы links все imdb_id, которым ставили рейтинг 5
+
+SELECT imdbid 
+FROM links
+JOIN ratings
+    ON links.movieid=ratings.movieid
+WHERE rating =5
+LIMIT 10;
