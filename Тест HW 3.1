@@ -34,12 +34,15 @@ WHERE rating =5
 LIMIT 10;
 
 
--- Посчитать число фильмов без оценок
+-- запрос 3.1 Посчитать число фильмов без оценок
 SELECT COUNT(*)
 FROM public.links
 LEFT JOIN public.ratings
     ON links.movieid=ratings.movieid
 WHERE ratings.movieid IS NULL;
+
+-- запрос 3.4 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5
+
 
 -- запрос 4.1 достать 10 imbdId из links у которых средний рейтинг больше 3.5
 
