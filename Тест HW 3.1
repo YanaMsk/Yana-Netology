@@ -22,7 +22,15 @@ SELECT * FROM ratings LIMIT 10;
         movieid <= 1000
 )
 LIMIT 10;
+_______________________________
+ИЛИ
 
+SELECT * FROM links
+WHERE 
+      imdbid LIKE '%42'
+      AND
+      movieid BETWEEN 100 and 1000
+LIMIT 10;
 
 
 -- запрос 2.1 выбрать из таблицы links все imdb_id, которым ставили рейтинг 5
@@ -45,7 +53,7 @@ WHERE ratings.movieid IS NULL;
 
 
 
--- запрос 3.2 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5
+-- запрос 3.2 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5.
 
 SELECT userid, AVG(rating)
 FROM ratings
@@ -56,5 +64,43 @@ LIMIT 10;
 
 
 
--- запрос 4.1 достать 10 imbdId из links у которых средний рейтинг больше 3.5
+-- запрос 4.1 достать 10 imbdId из links у которых средний рейтинг больше 3.5 
+Подсчитать средний рейтинг по всем пользователям, которые попали под условие - то есть в ответе должно быть одно число.
 
+1 link сoединить с ratings
+2 выбрать iserid  AVG(rating) больше 3.5 
+сгруппировать по рейтингу и юзерам по убываюшей
+
+
+
+
+SELECT imbdId, movieid
+FROM links
+JOIN 
+(SELECT movieid, AVG(rating)
+FROM ratings
+GROUP BY movieid
+HAVING AVG(rating) > 3.5)
+      on ratings.movieid=links.movieid
+LIMIT 10;
+
+
+SELECT 
+
+WITH rating_avr_table
+AS (
+    SELECT movieid, AVG(rating) as rating_avr
+    FROM ratings
+    GROUP BY movieid 
+    HAVING AVG(rating) > 3.5)
+JOIN links
+ON rating_avr_table.movieid=links.movieid
+LIMIT 10;
+
+
+
+-- запрос 4.2 Common Table Expressions: посчитать средний рейтинг по пользователям, у которых более 10 оценок
+
+1. Посчитать число оценок по каждому пользователю
+2. Выбрать пользователей у кого больше 10 оценок
+3. Посчитать AVR этих пользователей
