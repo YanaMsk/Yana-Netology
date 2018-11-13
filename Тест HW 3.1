@@ -24,6 +24,7 @@ SELECT * FROM ratings LIMIT 10;
 LIMIT 10;
 
 
+
 -- запрос 2.1 выбрать из таблицы links все imdb_id, которым ставили рейтинг 5
 
 SELECT imdbid, rating
@@ -32,6 +33,7 @@ JOIN ratings
     ON links.movieid=ratings.movieid
 WHERE rating =5
 LIMIT 10;
+
 
 
 -- запрос 3.1 Посчитать число фильмов без оценок
@@ -43,15 +45,14 @@ WHERE ratings.movieid IS NULL;
 
 
 
--- запрос 3.4 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5
+-- запрос 3.2 GROUP BY, HAVING вывести top-10 пользователей, у который средний рейтинг выше 3.5
 
 SELECT userid, AVG(rating)
 FROM ratings
 GROUP BY userid 
 HAVING AVG(rating) > 3.5
 ORDER BY AVG(rating) DESC
-LIMIT 50;
-
+LIMIT 10;
 
 
 
