@@ -130,3 +130,10 @@ AS
 SELECT AVG (rating_avarage)
 FROM table_itog
 ;
+
+__________________________
+Считаем число рейтингов по каждому пользвателю
+SELECT userid,
+COUNT (*)
+FROM ratings
+GROUP BY userid; 
